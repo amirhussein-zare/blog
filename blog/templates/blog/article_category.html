@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% for article in articles_by_category %}
+            <a href="{{ article.get_absolute_url }}" style="color: black;">
+                <h1 ><b>{{article.title}}</b></h1>
+                <p>{{article.body|truncatewords:25|safe}}</p>
+            </a>
+            <small >directed by <b>{{article.writer}}</b> <br> <b>{{article.jpublish|date:"j/n/Y"}}</b></small>&nbsp;          
+            <hr>
+            
+        {% endfor %}
+    {% else %}
+        <p> please <a href="{% url 'accounts:user_login' %}">login</a> or <a href="{% url 'accounts:user_register' %}">register</a> first</p>
+    {% endif %}
+
+{% endblock %}

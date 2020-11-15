@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% for article in all_articles %}
+            <a href="{{ article.get_absolute_url }}" style="color: black;">
+                <h1 ><b>{{article.title}}</b></h1>
+                <p>{{article.body|truncatewords:25|safe}}</p>
+            </a>
+            <small >directed by <b>{{article.writer}}</b><br>  <b>{{article.jpublish}}</b></small>&nbsp;
+            <br>
+                {% for item in article.category.all  %}
+                    <a href="{% url 'blog:article_category' item.title %}" style="color: black;"><span> {{item.title}}</span>&nbsp;</a>
+                {% endfor %}
+            
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p> please <a href="{% url 'accounts:user_login' %}">login</a> or <a href="{% url 'accounts:user_register' %}">register</a> first</p>
+    {% endif %}
+
+{% endblock %}
+<!--
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda, magnam? Tempora veritatis consequuntur ad fugiat deserunt natus id praesentium voluptatum laborum aliquid libero suscipit voluptates, dolore magnam eligendi molestias iure.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident molestiae minima tempore quaerat porro voluptatibus non libero eveniet dolor neque aliquid repellat est a, dolorum corrupti repudiandae quae iste modi!
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, placeat? Laboriosam quam dignissimos et placeat adipisci rerum doloribus, iste dolorem consectetur animi, accusantium aut sequi sit dicta sed eum ducimus?
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio dignissimos, accusamus ullam aut iusto, mollitia odio saepe earum ducimus quibusdam maiores eaque illum facere? Sed maxime animi praesentium quasi.
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda, magnam? Tempora veritatis consequuntur ad fugiat deserunt natus id praesentium voluptatum laborum aliquid libero suscipit voluptates, dolore magnam eligendi molestias iure.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident molestiae minima tempore quaerat porro voluptatibus non libero eveniet dolor neque aliquid repellat est a, dolorum corrupti repudiandae quae iste modi!
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, placeat? Laboriosam quam dignissimos et placeat adipisci rerum doloribus, iste dolorem consectetur animi, accusantium aut sequi sit dicta sed eum ducimus?
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio dignissimos, accusamus ullam aut iusto, mollitia odio saepe earum ducimus quibusdam maiores eaque illum facere? Sed maxime animi praesentium quasi.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda, magnam? Tempora veritatis consequuntur ad fugiat deserunt natus id praesentium voluptatum laborum aliquid libero suscipit voluptates, dolore magnam eligendi molestias iure.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident molestiae minima tempore quaerat porro voluptatibus non libero eveniet dolor neque aliquid repellat est a, dolorum corrupti repudiandae quae iste modi!
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, placeat? Laboriosam quam dignissimos et placeat adipisci rerum doloribus, iste dolorem consectetur animi, accusantium aut sequi sit dicta sed eum ducimus?
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore distinctio dignissimos, accusamus ullam aut iusto, mollitia odio saepe earum ducimus quibusdam maiores eaque illum facere? Sed maxime animi praesentium quasi.
+-->

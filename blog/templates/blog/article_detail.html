@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 ><b>{{article.title}}</b></h1><hr>
+<p >{{article.body|safe}}</p>
+<small >directed by <b>{{article.writer}}</b> <br> <b>{{article.jpublish}}</b></small>
+{% endblock %}
